@@ -7,6 +7,11 @@ RUN apt-get update && apt-get -y install \
 # setup RIFE
 WORKDIR /rife
 COPY . .
+
+ENV \
+    PIP_ROOT_USER_ACTION=ignore \
+    PIP_BREAK_SYSTEM_PACKAGES=1
+
 RUN pip3 install -r requirements.txt
 
 ADD docker/inference_img /usr/local/bin/inference_img
